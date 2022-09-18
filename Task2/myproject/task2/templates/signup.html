@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="signup.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'signup.css' %}">
+    <title>Signup</title>
+</head>
+<body>
+    <div class="messagedisplay">
+        {% for message in errors %}
+        <p>{{message}}</p>
+        
+        {% endfor %}
+
+    </div>
+    <h1>Signup Here</h1>
+    <div class="formdata">
+        <form action="/signup" method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="uname">Enter Username</label>
+                <input type="text" name="uname" id="uname">
+            </div>
+            <div>
+                <label for="fname">Enter First Name</label>
+                <input type="text" name="fname" id="fname">
+            </div>
+            <div>
+                <label for="lname">Enter Last Name</label>
+                <input type="text" name="lname" id="lname">
+            </div>
+            <div>
+                <label for="email">Enter Email ID</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div>
+                <label for="phone">Enter Phone Number</label>
+                <input type="text" name="phone" id="phone">
+            </div>
+            <div class="divrad">
+                <p>Gender</p>
+                <label for="male">Male</label>
+                <input type="radio" id="male" value="Male" name="gender" class="rad"><br>
+                <label for="female">Female</label>
+                <input type="radio" id="female" value="Female" name="gender" class="rad"><br>
+                <label for="other">Other</label>
+                <input type="radio" id="other" value="Other" name="gender" class="rad"><br>
+            </div>
+            <div>
+                <label for="pass1">Enter Password</label>
+                <input type="text" name="pass1" id="pass1">
+            </div>
+            <div>
+                <label for="pass2">Onfirm Password</label>
+                <input type="text" name="pass2" id="pass2">
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

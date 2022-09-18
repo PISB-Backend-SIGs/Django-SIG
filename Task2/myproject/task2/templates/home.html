@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="home.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+    <title>Home-Page</title>
+</head>
+<body>
+    <div class="messagedisplay">
+        <p>{{message}}</p>
+    </div>
+    <h1>Home Page</h1>
+    <div class="displaybutton">
+        <input type="submit" value="Signup" name="user_signup" onclick="location.href='signup'">
+        <input type="submit" value="Login" name="user_login" onclick="location.href='login'">
+        <input type="submit" value="Check" name="check_username" onclick="location.href='check'">
+    </div>
+</body>
+</html>

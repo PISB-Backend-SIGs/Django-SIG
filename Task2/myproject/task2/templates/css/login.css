@@ -1,0 +1,30 @@
+body{
+    text-align: center;
+    background-image: linear-gradient( 102.4deg,  rgba(253,189,85,1) 7.8%, rgba(249,131,255,1) 100.3% );
+}
+.messagedisplay{
+    /* border: 2px solid black; */
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.formdata{
+    /* padding: 5px 15px; */
+    /* border: 2px solid black; */
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    
+}
+.formdata input{
+    text-align: center;
+    padding-left: 10px;
+    margin:5px;
+    font-size: 18px;
+    border-radius: 25px;
+    background-color: rgb(220, 237, 151);
+    color: rgb(0, 0, 0);
+}
