@@ -10,6 +10,10 @@
     <title>Login</title>
 </head>
 <body>
+    <div class="formdata">
+        <input type="submit" value="Check" name="check_username" onclick="location.href='check'">
+        <input type="submit" value="Signup" name="user_signup" onclick="location.href='signup'">
+    </div>
     <h1>Login Here</h1>
     <div class="messagedisplay">
         {{errors}}
@@ -21,7 +25,7 @@
                 <input type="text" name="uname" id="uname" placeholder="Username">
             </div>
             <div>
-                <input type="text" name="pass" id="pass" placeholder="Password">
+                <input type="password" name="pass" id="pass" placeholder="Password">
             </div>
             <div>
                 <input type="submit" value="Submit">

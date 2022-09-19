@@ -41,7 +41,7 @@ def signup(request):
 
                 return render(request,'home.html',{'message':"Succesfuly Account Created"})
             else:
-                return render(request,'signup.html',{'errors':"Passwords are not same"})
+                return render(request,'signup.html',{'passmessage':"Passwords are not same"})
                 
     else:
         return render(request,'signup.html')
