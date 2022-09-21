@@ -10,6 +10,6 @@ def printall(k):
         return ['Please enter positive number']        
 # Create your views here.
 def home(request):
-    n = int(request.GET.get('num','0'))
+    n = int(request.POST.get('num','0'))
     context = {'Num': n ,'func': printall(n)}
     return render(request, "new/base.html",context)
