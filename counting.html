@@ -1,0 +1,28 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>counting numbers</title>
+</head>
+<body>
+<form>
+<div>
+    <label for=""> <strong> ENTER A NUMBER: </strong> </label>
+    <input type="number" name="num1">
+</div>
+<div>
+    <button type="submit"><em>Submit</em></button>
+</div>
+<div>
+    <strong>Output</strong>
+    {{output}}
+</div>
+</form>
+
+{%for i in ans %}
+<div>{{output}}</div>
+{% endfor %}
+</body>
+</html>
