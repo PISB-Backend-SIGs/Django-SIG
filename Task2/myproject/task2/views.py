@@ -4,6 +4,11 @@ from django.shortcuts import render,HttpResponse,redirect
 from .models import Data  #for Data database
 from django.contrib.auth.models import User #for admin user database
 from django.contrib.auth import authenticate,login,logout #for authentication system
+import re
+
+#django admin panel
+#   Prasad
+#   Prasad@2003
 
 # Create your views here.
 def home(request):
@@ -42,34 +47,49 @@ def signup(request):
             return render(request,'signup.html',{'errors':error})
    
         else:
-            if pass1==pass2:
-                special =["@","#","_"]
-                a=0
-                d=0
-                s=0
-                c=0
+            if pass1==pass2 :
                 if len(pass1)>=8:
-                    for i in pass1:
-                        if i.isupper():
-                            c+=1
-                        if i.isalpha():
-                            a+=1
-                        if i.isnumeric():
-                            d+=1
-                        if i in special:
-                            s+=1
-                    if a>=1 and d>=1 and s>=1 and c>=1:
+                    regex="(?=.*[a-z])(?=.*[A-Z])(?=.*[1-9])(?=.*[&@#$%])"
+                    patt=re.search(regex,pass1)
+                    if patt:
                         #for store in data database
                         data=Data(user_name=uname,first_name=fname,last_name=lname,email_id=email,phone_num=phone,
                         gender_user=gender,
                         password_user=pass1)
                         data.save()
-
                         #for store in userdatabase
                         user=User.objects.create_user(username=uname,first_name=fname,last_name=lname,email=email,password=pass1)
                         user.save()
 
-                        return render(request,'home.html',{'message':"Succesfuly Account Created"})
+                        return render(request,'home.html',{'message':"Succesfuly Account Created"})                    
+
+                        # special =["@","#","_"]
+                        # a=0
+                        # d=0
+                        # s=0
+                        # c=0
+                        # if len(pass1)>=8:
+                        #     for i in pass1:
+                        #         if i.isupper():
+                        #             c+=1
+                        #         if i.isalpha():
+                        #             a+=1
+                        #         if i.isnumeric():
+                        #             d+=1
+                        #         if i in special:
+                        #             s+=1
+                        # if a>=1 and d>=1 and s>=1 and c>=1:
+                        #     #for store in data database
+                        #     data=Data(user_name=uname,first_name=fname,last_name=lname,email_id=email,phone_num=phone,
+                        #     gender_user=gender,
+                        #     password_user=pass1)
+                        #     data.save()
+
+                        #     #for store in userdatabase
+                        #     user=User.objects.create_user(username=uname,first_name=fname,last_name=lname,email=email,password=pass1)
+                        #     user.save()
+
+                        #     return render(request,'home.html',{'message':"Succesfuly Account Created"})
                     else :
 
                         passmessage="Password should be atleast 8 digit \n It must contain atlest 1 uppercase character \n atleast 1 lowercase character \n atlest one special character"
@@ -99,6 +119,10 @@ def login_user(request):
     else:
         return render(request,'login.html')
 
+#for logout
+def logout_user(request):
+    logout(request)
+    return render(request,'home.html')
 
 def user(request):
     return render(request,'user.html')

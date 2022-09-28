@@ -4,14 +4,14 @@ body{
 }
 .messagedisplay{
     /* border: 2px solid black; */
-    width: 280px;
+    width: 380px;
     margin-left: auto;
     margin-right: auto;
 }
 .displaybutton{
-    /* padding: 5px 15px; */
+    padding: 5px 15px;
     /* border: 2px solid black; */
-    width: 280px;
+    width: 320px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -20,10 +20,12 @@ body{
     
 }
 .displaybutton input{
+    width: 240px;
+    height: 40px;
     font-size: 18px;
     margin: 15px 40px;
-    border-radius: 25px;
-    background-color: rgb(220, 237, 151);
+    border: 4px solid black;
+    border-radius: 4px;
+    background-color: rgb(190, 8, 245);
     color: white;
-    cursor: pointer;
 }

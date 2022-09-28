@@ -26,7 +26,9 @@ urlpatterns = [
     path('check/', views.check, name='check'),
 
     #this is for action in signup page
+    #for buttons in pages
     path('signup', views.signup, name='signup') ,
     path('login', views.login_user, name='login'), 
     path('check', views.check, name='check'),
+    path('logout', views.logout_user, name='logout'),
 ]

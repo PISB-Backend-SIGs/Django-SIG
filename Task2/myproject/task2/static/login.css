@@ -4,28 +4,40 @@ body{
 }
 .messagedisplay{
     /* border: 2px solid black; */
-    width: 280px;
+    width: 380px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.formdata{
-    /* padding: 5px 15px; */
+
+
+.formdata {
     /* border: 2px solid black; */
     width: 280px;
     margin-left: auto;
     margin-right: auto;
-    padding: 10px;
-    
-}
-.formdata input{
     text-align: center;
-    padding-left: 10px;
-    margin:5px;
     font-size: 18px;
     border-radius: 25px;
-    background-color: rgb(220, 237, 151);
     color: rgb(0, 0, 0);
-    cursor: pointer;
 }
+.button{
+    width: 110px;
+    height: 28px;
+    font-size: 16px;
+    margin: 15px 0px;
+    border: 4px solid black;
+    border-radius: 4px;
+    background-color: rgb(190, 8, 245);
+    color: white;
+}
+.formip input{
+    width: 210px;
+    height: 40px;
+    margin: 5px;
+    height: 25px;
+    border: 2px solid black;
+    background-color: rgb(234, 242, 122);
+}
+
