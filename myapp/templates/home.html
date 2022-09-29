@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TASK 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  </head>
+  <body>
+<div class ="container">
+    <h1>Enter the numbers you want to print</h1>
+    {% comment %} <form action ="{% url "data2" %}" method="POST"> {% endcomment %}
+        <form method = "POST">
+        {% csrf_token %}
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="number" placeholder="Enter number" aria-label="Search" name="value">
+                <button class="btn btn-outline-success" type="submit">Submit</button>
+              </form>
+            </div>
+        </nav>
+    </form>
+    {% if data3 %}
+    <h2>Enter valid natural number</h2>
+    {% endif %}
+      {% for i in data2 %}
+          <h2>{{i}}</h2>
+      {% endfor %}
+</div>
+</body>
+</html>
+
+
