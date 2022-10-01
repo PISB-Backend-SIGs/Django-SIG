@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>homev1</title>
+</head>
+<body>
+    {{response}}
+    <h1>Login: </h1>
+    <form action="/home" method="post">
+        {% csrf_token %}
+        <b>Enter User Name: </b><input type="text" name="username"><br><br>
+        <b>Enter Password: </b><input type="text" class="form-control,col-xs-3" placeholder="Enter Password" name="password" id="psw" style="-webkit-text-security: disc;" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    New user? <a href="/index">register</a>
+</body>
+</html>
