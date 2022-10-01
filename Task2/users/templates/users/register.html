@@ -10,17 +10,20 @@
             </div>
         {% endfor %}
     {% endif %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4"></legend>
-                {{ form }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
-            </div>
-        </form>
-    </div>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="newusername">Your Name : </label>
+        <input type="text" name="newusername"><br><br>
+        <label for="Mobile">Mobile Number : </label>
+        <input type="text" name="Mobile"><br><br>
+        <label for="Email">Email id : </label>
+        <input type="text" name="Email"><br><br>
+        <label for="Password">Password : </label>
+        <input type="text" name="Password"><br><br>
+        <label for="ConfirmPassword">Confirm Password : </label>
+        <input type="text" name="ConfirmPassword"><br><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
