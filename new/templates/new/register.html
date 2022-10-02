@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+
+    <form action="{%url 'new_register' %}" method = "post">
+        
+        {% csrf_token %}
+        <p>Enter username: <input type="text" name="username"></p>
+        <p>Enter first name: <input type="text" name="firstname"></p>
+        <p>Enter Last Name: <input type="text" name="lastname"></p>
+        <p>Enter Email ID: <input type="email" name="email"></p>
+        <p>Enter Phone number: <input type="number" name="phonenumber"></p>
+        <p>Gender</p>
+        <p><input type="radio" name="gender" value="Male"> Male</p>
+        <p><input type="radio" name="gender" value="Female"> Female</p>
+        <p><input type="radio" name="gender" value="Other">Other</p>
+        <p>Enter password: <input type="password" name="password"></p>
+        <p>Confirm password: <input type="password" name="confirmpass"></p>
+        <p><input type="submit"></p>
+        <p>Already have an account?<a href="#">Sign In</a></p>
+        <p><a href={% url "new_home" %}>Home</a></p>
+    </form>
+    
+    
+    {% for err in error %}
+        <h2>{{err}}</h2>
+    {% endfor %}
+</body>
+</html>
