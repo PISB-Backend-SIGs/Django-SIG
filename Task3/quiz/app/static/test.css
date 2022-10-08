@@ -1,0 +1,194 @@
+@font-face {
+    font-family: fat;
+    src: url(/web_fonts/shrikhand/Shrikhand-Regular.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.navigation{
+    z-index: 5;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    justify-content: space-between;
+
+    /* margin: 10px 15px; */
+    background-color: #355C7D;
+    
+    border-bottom: black solid 1px ;
+    /* border-radius: 4px; */
+    font-weight: 100;
+    font-size:55px ;
+}
+.nav a{
+
+    float: right;
+    display: block;
+    padding: 22px 16px;
+    
+    margin: 0 12px;
+    /* margin-left: 16px; */
+    font-size: 25px;
+    color: rgb(245, 213, 9);
+    /* text-align: center; */
+    /* border: 2px solid #7004bc; */
+    /* background: #a44be3; */
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+.nav a:hover{
+    color: #FDFEFF;
+}
+.navigation p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: rgb(249, 172, 6);
+    font-family: fat;
+    margin: 0 12px;
+    /* border: 2px solid red; */
+}
+
+
+/* Banner with text  */
+.typing{
+    background-color: #343F4F;
+    /* background-image: url("g2.gif"); */
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+} 
+.typing ul{
+    font-family: 'Courier New', Courier, monospace;
+    list-style: none;
+    color: aliceblue;
+    font-size: 60px;
+    font-weight: 400;
+    
+}
+.typing li span{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #FC6D6D;
+    height: 80px;
+    position: relative;
+    margin-left: 15px;
+    line-height: 80px;
+    letter-spacing: 5px;
+}
+
+
+
+
+/* About */
+.write{
+    height: 100vh;
+    width: 100%;
+    
+}
+
+
+/* Extended */
+.bas{
+    
+    background: #343F4F;
+    /* padding-top: 80px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.tcard{
+    border: 2px solid black;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 25px;
+    height: 50vh;
+    width: 35vh;
+
+}
+.tcard h1{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.card{
+    border: 2px solid black;
+    margin-top: auto;
+    margin-left: auto;
+}
+.userdisplay{
+    padding: 5px;
+}
+.userdisplay p{
+    padding-top: 20px;
+}
+.userdisplay span{
+    color: black;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.butn {
+    appearance: button;
+    backface-visibility: hidden;
+    background-color: #405cf5;
+    border-radius: 6px;
+    border-width: 0;
+    box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+    font-size: 100%;
+    height: 44px;
+    line-height: 1.15;
+    margin: 12px 0 0;
+    outline: none;
+    overflow: hidden;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transform: translateZ(0);
+    transition: all .2s,box-shadow .08s ease-in;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+}
+
+.butn:disabled {
+  cursor: default;
+}
+
+.butn:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+.uresult{
+    padding-top: 36%;
+    text-align: center;
+}
+.uresult p{
+    text-align: center;
+    font-weight: bold;
+    
+}
+.uresult span{
+    color: red;
+    padding-top: 50px;
+}
+.uresult hr{
+    width: 50%; margin: 0 25% 0 25%;
+    border: 1px solid black;
+    color: black;
+}
+.umark{
+    padding: 36px;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz.css' %}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <form action="/start/" method="POST">
+        {% csrf_token %}
+    <div class="container mt-sm-5 my-1">
+        <div class="question ml-sm-5 pl-sm-5 pt-2">
+            <div class="py-2 h5"><b>{{question.place}}. {{question.ques}}</b></div>
+            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+
+                <label class="options">{{question.op1}}
+                    <input type="radio" name="ans" value="{{question.op1}}" id="op1">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="options">{{question.op2}}
+                    <input type="radio" name="ans" value="{{question.op2}}" id="op2">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="options">{{question.op3}}
+                    <input type="radio" name="ans" value="{{question.op3}}" id="op3">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="options">{{question.op4}}
+                    <input type="radio" name="ans" value="{{question.op4}}" id="op4">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="d-flex align-items-center pt-3">
+            <div id="prev">
+                {% if prevs %}
+                <button class="btn btn-primary" type="submit" name="previous">Previous</button>
+                {% endif %}
+            </div>
+            <div class="ml-auto mr-sm-5">
+                {% if buton %}
+                    <button  class="btn btn-success" type="submit" name="next">Next</button>
+                {% else %}
+                    <button class="btn btn-success"  type="submit" name="submit">Submit</button>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+    </form>
+   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
+

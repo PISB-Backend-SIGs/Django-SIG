@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'test.css' %}">
+    
+    <title>User</title>
+</head>
+<body>
+
+    <div class="navigation">
+        <p>Quizz</p>
+        <div class="nav">
+            {% if user.is_authenticated %}
+            <a href="/logout/">Logout</a>
+            {% else %}
+            <a href="#">Sign Up</a>
+            <a href="/login/">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="bas">
+    <div class="tcard">
+        <h1>User Page</h1>
+            
+        <div class="userdisplay">
+            <p>Username : <span>{{display.username}}</span> </p>
+            <p>First Name : <span>{{display.first_name}}</span></p>
+            <p>Last Name : <span>{{display.last_name}}</span></p>
+            <p>Email : <span>{{display.email}}</span></p>
+            <p>Phone number : <span>{{udisplay.phone_number}}</span></p>
+            <!-- <input type="submit" value="Logout" name="user_logout" onclick="location.href='/logout/'"> -->
+        </div>
+        {% if not flag %}
+        <div >
+            <input class="butn" type="submit" value="Start" name="start_quiz" onclick="location.href='/start/'">
+        
+        </div>
+        {% endif %}
+        <div class="uresult">
+            {% if flag %}
+                <h1>Result</h1>
+                <div class="umark">
+                <p> <span>{{udisplay.marks}}</span></p>
+                <!-- <p> <span>{{user.marks}}</span></p> -->
+                <hr>
+                <p>100</p>
+                </div>
+            {% endif %}
+        </div>
+        </div>
+
+    </div>
+</body>
+</html>
