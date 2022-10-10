@@ -40,12 +40,20 @@ def login(request):
     else:
         return render(request,'app/login.html')
 def user_page(request):
-    obj = User.objects.get(username=request.user)
-    cq=Credential.objects.get(user=obj)
-    return render(request,'app/test.html',{'message':"Succesfuly Loged in",'display':obj,'udisplay':cq})
+    if request.user.is_authenticated:
+
+        obj = User.objects.get(username=request.user)
+        cq=Credential.objects.get(user=obj)
+        return render(request,'app/test.html',{'message':"Succesfuly Loged in",'display':obj,'udisplay':cq})
+    else:
+        return render(request,'app/index.html',{'title':"Quizz"})
 def logout(request):
-    logt(request)
+    if request.user.is_authenticated:
+        logt(request)
     # return render(request,'app/index.html')
+    else:
+        return render(request,'app/index.html',{'title':"Quizz"})
+
     return redirect('/index/')
 
 def pass_question(request):
@@ -82,6 +90,8 @@ def result(request):
     # messages.success(request, "Message sent.res" )
     return render(request,'app/test.html',{'display':obj,'udisplay':cq, 'flag':True})
 
+
+
 def start(request):
     context={}
     if request.user.is_authenticated:
@@ -93,7 +103,8 @@ def start(request):
             # print(cq.crntque)
             # print(ques.ans)
             # print(request.POST['ans'])
-            if request.POST['ans'] == ques.ans:
+            if request.POST.get('ans') == ques.ans:
+                print(request.POST.get('ans'))
                 cq.marks +=10
                 cq.save()
 
@@ -102,7 +113,8 @@ def start(request):
         elif ('previous' in request.POST):
             cq=Credential.objects.get(user=request.user)
             cq.crntque -= 2
-            cq.save()                
+            cq.save()        
+                    
             return redirect('/pass_question/')
         elif ('submit' in request.POST):
             cq=Credential.objects.get(user=request.user)
