@@ -1,2 +1,4 @@
 1.1 : task done 
-(there are some bugs in Credential model trys field)
+(there are some some issues in Credential model)
+1.2 : Solve some issues  (with added authentication to user_page and
+logout page)
