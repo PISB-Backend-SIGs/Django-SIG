@@ -6,7 +6,7 @@ from django.contrib.auth.models import User #for admin user database
 from django.contrib.auth import authenticate,login,logout #for authentication system
 from django.contrib.auth import login as log #for authentication system
 from django.contrib.auth import logout as logt #for authentication system
-from .models import Quiz,Credential
+from .models import Quiz,Credential,Uans,Ures
 import re
 # Create your views here.
 #testuser1 123@prasad
@@ -40,29 +40,36 @@ def login(request):
     else:
         return render(request,'app/login.html')
 def user_page(request):
-    if request.user.is_authenticated:
-
-        obj = User.objects.get(username=request.user)
-        cq=Credential.objects.get(user=obj)
-        return render(request,'app/test.html',{'message':"Succesfuly Loged in",'display':obj,'udisplay':cq})
-    else:
-        return render(request,'app/index.html',{'title':"Quizz"})
+    obj = User.objects.get(username=request.user)
+    cq=Credential.objects.get(user=obj)
+    return render(request,'app/test.html',{'message':"Succesfuly Loged in",'display':obj,'udisplay':cq})
 def logout(request):
-    if request.user.is_authenticated:
-        logt(request)
+    logt(request)
     # return render(request,'app/index.html')
-    else:
-        return render(request,'app/index.html',{'title':"Quizz"})
-
     return redirect('/index/')
 
 def pass_question(request):
     context={}
     cq=Credential.objects.get(user=request.user)
     cq.crntque += 1
-    quiz_que = Quiz.objects.all()
-    
     cq.save()
+    quiz_que = Quiz.objects.all()
+    if Ures.objects.filter( user=request.user ,qid=cq.crntque).exists():
+        obj=Ures.objects.get(user=request.user,qid=cq.crntque)
+        # print(obj)  #it will print option 
+        # print(obj.opts)  #it will print option 
+        if obj.opts=="op1":
+            context["op1"]=True
+        if obj.opts=="op2":
+            context["op2"]=True
+        if obj.opts=="op3":
+            context["op3"]=True
+        if obj.opts=="op4":
+            context["op4"]=True
+    else:
+        print("Not save it will save")
+    
+    
     if cq.crntque >1:
         context['prevs']=True
     if cq.crntque <10:
@@ -75,14 +82,24 @@ def pass_question(request):
         
     return render(request,'app/quiz.html',context)
     
-
-def result(request):
-    # cq=Credential.objects.get(user=request.user)
+def cal(request):
     obj=User.objects.get(username=request.user)
     cq=Credential.objects.get(user=obj)
-    # obj=User.objects.get(username=request.user)
+    ques = Quiz.objects.get(place = cq.crntque)
+    for i in range(1,11):
+        ques = Quiz.objects.get(place = i)
+        obj=Ures.objects.get(user=request.user,qid=i)
+        if ques.ans==obj.opts:
+            cq.marks+=10
+            cq.save()
+        
+    return redirect("/result")
 
 
+
+def result(request):
+    obj=User.objects.get(username=request.user)
+    cq=Credential.objects.get(user=obj)
     # display by user module  display:obj
     # to display marks of user udisplay:cq
     cq.trys+=1
@@ -90,39 +107,41 @@ def result(request):
     # messages.success(request, "Message sent.res" )
     return render(request,'app/test.html',{'display':obj,'udisplay':cq, 'flag':True})
 
-
-
 def start(request):
     context={}
     if request.user.is_authenticated:
         if 'next' in request.POST:
             cq=Credential.objects.get(user=request.user)
-            ques = Quiz.objects.get(place = cq.crntque)
-            #to check 
-            # print(ques.place)
-            # print(cq.crntque)
-            # print(ques.ans)
-            # print(request.POST['ans'])
-            if request.POST.get('ans') == ques.ans:
-                print(request.POST.get('ans'))
-                cq.marks +=10
-                cq.save()
-
+            if request.POST.get('ans'):
+                if Ures.objects.filter(user=request.user,qid=cq.crntque).exists():
+                    obj=Ures.objects.get(user=request.user,qid=cq.crntque)
+                    print(obj.opts)  #it will print option 
+                    obj.opts=request.POST.get('ans')
+                    obj.save()
+                else:
+                    obj=Ures(user=request.user,qid=cq.crntque,opts=request.POST.get('ans'))
+                    obj.save()
             
             return redirect('/pass_question/')
         elif ('previous' in request.POST):
             cq=Credential.objects.get(user=request.user)
             cq.crntque -= 2
-            cq.save()        
-                    
+            cq.save()                
             return redirect('/pass_question/')
         elif ('submit' in request.POST):
             cq=Credential.objects.get(user=request.user)
             ques = Quiz.objects.get(place = cq.crntque)
-            if request.POST['ans'] == ques.ans:
-                cq.marks +=10
-                cq.save()
-            return redirect('/result/')
+            if request.POST.get('ans'):
+                if Ures.objects.filter(user=request.user,qid=cq.crntque).exists():
+                    obj=Ures.objects.get(user=request.user,qid=cq.crntque)
+                    print(obj.opts)  #it will print option 
+                    obj.opts=request.POST.get('ans')
+                    obj.save()
+                else:
+                    obj=Ures(user=request.user,qid=cq.crntque,opts=request.POST.get('ans'))
+                    obj.save()
+
+            return redirect('/cal/')
         else:
             return redirect('/pass_question/')
     else:
@@ -174,6 +193,8 @@ def signup(request):
                         #for store in userdatabase
                         data=Credential(user=user,phone_number=phone,crntque=0,marks=0,trys=0)
                         data.save()
+                        uans=Uans(user=user)
+                        uans.save()
 
                         return render(request,'app/index.html',{'message':"Succesfuly Account Created"})                    
 

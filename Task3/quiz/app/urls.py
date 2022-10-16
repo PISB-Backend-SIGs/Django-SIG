@@ -27,6 +27,7 @@ urlpatterns = [
     path('start/', views.start, name='start'),
     # path('previous/', views.previous, name='previous'),
     path('pass_question/', views.pass_question, name='pass_question'),
+    path('cal/', views.cal, name='cal'),
     path('result/', views.result, name='result'),
     path('user_page/', views.user_page, name='user_page'),
 
@@ -38,5 +39,6 @@ urlpatterns = [
     # path('previous', views.previous, name='previous'),
     path('pass_question', views.pass_question, name='pass_question'),
     path('result', views.result, name='result'),
+    path('cal', views.cal, name='cal'),
 ]
 

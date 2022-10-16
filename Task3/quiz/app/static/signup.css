@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
-	background: #343F4F ;
+	background: beige ;
 	/* background: url() no-repeat; */
 	background-size: cover;
 	/* background-color: #343F4F; */
@@ -15,9 +15,6 @@ body {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	color: #191970;
-	background: rgb(255, 255, 255);
-	border-radius: 25px;
-	padding: 20px;
 }
 
 .login-box h1 {

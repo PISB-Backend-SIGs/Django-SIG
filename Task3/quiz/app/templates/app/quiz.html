@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="quiz.css">
+    <!-- <link rel="stylesheet" href="quiz.css"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'quiz.css' %}">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -21,19 +21,19 @@
             <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
 
                 <label class="options">{{question.op1}}
-                    <input type="radio" name="ans" value="{{question.op1}}" id="op1">
+                    <input type="radio" name="ans" value="op1" id="op1" {% if op1 %} checked {% endif %}>
                     <span class="checkmark"></span>
                 </label>
                 <label class="options">{{question.op2}}
-                    <input type="radio" name="ans" value="{{question.op2}}" id="op2">
+                    <input type="radio" name="ans" value="op2" id="op2" {% if op2 %} checked {% endif %}>
                     <span class="checkmark"></span>
                 </label>
                 <label class="options">{{question.op3}}
-                    <input type="radio" name="ans" value="{{question.op3}}" id="op3">
+                    <input type="radio" name="ans" value="op3" id="op3" {% if op3 %} checked {% endif %}>
                     <span class="checkmark"></span>
                 </label>
                 <label class="options">{{question.op4}}
-                    <input type="radio" name="ans" value="{{question.op4}}" id="op4">
+                    <input type="radio" name="ans" value="op4" id="op4" {% if op4 %} checked {% endif %}>
                     <span class="checkmark"></span>
                 </label>
             </div>

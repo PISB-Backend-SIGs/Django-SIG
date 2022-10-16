@@ -2,3 +2,5 @@
 (there are some some issues in Credential model)
 1.2 : Solve some issues  (with added authentication to user_page and
 logout page)
+1.2 : Solve all issues with new techniques(get,getting particular
+row in objects of same user)
