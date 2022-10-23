@@ -11,9 +11,13 @@ import re
 # Create your views here.
 #testuser1 123@prasad
 #testuser2 Prasad@123
+
+
+q_num = len(Quiz.objects.all())
 def index(request):
     # user=User.objects.get(username=request.user)
     # print(user)
+    print(q_num)
     return render(request,'app/index.html',{'title':"Quizz"}) #,'user':user
 def login(request):
     if request.method=="POST":
@@ -53,7 +57,7 @@ def pass_question(request):
     cq=Credential.objects.get(user=request.user)
     cq.crntque += 1
     cq.save()
-    quiz_que = Quiz.objects.all()
+    # quiz_que = Quiz.objects.all()
     if Ures.objects.filter( user=request.user ,qid=cq.crntque).exists():
         obj=Ures.objects.get(user=request.user,qid=cq.crntque)
         # print(obj)  #it will print option 
@@ -72,9 +76,9 @@ def pass_question(request):
     
     if cq.crntque >1:
         context['prevs']=True
-    if cq.crntque <10:
+    if cq.crntque <q_num:
         context['buton']=True
-    else:
+    if cq.crntque==q_num:
         context['buton']=False
     ques = Quiz.objects.get(place = cq.crntque)
     # print(ques)
@@ -83,29 +87,36 @@ def pass_question(request):
     return render(request,'app/quiz.html',context)
     
 def cal(request):
-    obj=User.objects.get(username=request.user)
-    cq=Credential.objects.get(user=obj)
-    ques = Quiz.objects.get(place = cq.crntque)
-    for i in range(1,11):
-        ques = Quiz.objects.get(place = i)
-        obj=Ures.objects.get(user=request.user,qid=i)
-        if ques.ans==obj.opts:
-            cq.marks+=10
-            cq.save()
-        
-    return redirect("/result")
+    if request.user.is_authenticated:
+        obj=User.objects.get(username=request.user)
+        cq=Credential.objects.get(user=obj)
+        ques = Quiz.objects.get(place = cq.crntque)
+        for i in range(1,q_num+1):
+            ques = Quiz.objects.get(place = i)
+            if Ures.objects.filter(user=request.user,qid=cq.crntque).exists():
+                obj=Ures.objects.get(user=request.user,qid=i)
+                if ques.ans==obj.opts:
+                    cq.marks+=10
+                    cq.save()
+            
+        return redirect("/result")
+    else:
+        return redirect('/')
 
 
 
 def result(request):
-    obj=User.objects.get(username=request.user)
-    cq=Credential.objects.get(user=obj)
-    # display by user module  display:obj
-    # to display marks of user udisplay:cq
-    cq.trys+=1
-    cq.save()
-    # messages.success(request, "Message sent.res" )
-    return render(request,'app/test.html',{'display':obj,'udisplay':cq, 'flag':True})
+    if request.user.is_authenticated:
+        obj=User.objects.get(username=request.user)
+        cq=Credential.objects.get(user=obj)
+        # display by user module  display:obj
+        # to display marks of user udisplay:cq
+        cq.trys+=1
+        cq.save()
+        # messages.success(request, "Message sent.res" )
+        return render(request,'app/test.html',{'display':obj,'udisplay':cq, 'flag':True,"tottal_question":q_num*10})
+    else:
+        return render(request,'app/index.html')
 
 def start(request):
     context={}
@@ -145,7 +156,7 @@ def start(request):
         else:
             return redirect('/pass_question/')
     else:
-        return render(request,'app/quiz.html')
+        return render(request,'app/index.html')
 
 
 
