@@ -25,7 +25,7 @@
         <p>Enter password: <input type="password" name="password"></p>
         <p>Confirm password: <input type="password" name="confirmpass"></p>
         <p><input type="submit"></p>
-        <p>Already have an account?<a href="#">Sign In</a></p>
+        <p>Already have an account?<a href="{% url "new_login"%}">Sign In</a></p>
         <p><a href={% url "new_home" %}>Home</a></p>
     </form>
     

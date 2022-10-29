@@ -1,36 +1,16 @@
 import email
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import NewUser
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
 from django.db import IntegrityError
+from . import passwordcheck
+from django.contrib.auth import authenticate
+
 
 class IncorrectInfoError(Exception):
     pass
 
-def oneUpper(s):
-    for i in s:
-        if i.isupper():
-            return True 
-            break
-    else:
-        return False
-
-def oneLower(s):
-    for i in s:
-        if i.islower():
-            return True 
-            break
-    else:
-        return False
-
-def oneSpecial(s):
-    for i in s:
-        if i in ['!','@','#','$','%','^','&','*','(',')','-','_','+','=',';',':','?','/','.','>','<',',','~','`',"'",'"',"\\"]:
-            return True
-            break
-    else:
-        return False
 def printall(k):
     out = []
     if k>0:
@@ -81,10 +61,8 @@ def register(request):
                 error.append('Passwords not matching.')
                 raise IncorrectInfoError()
             
-            if not ((len(request.POST.get('password')) > 8) and ( oneUpper(request.POST.get('password'))) and (oneLower(request.POST.get('password'))) and (oneSpecial(request.POST.get('password')))) :
-                error.append("Password must contain atleast 8 digits. Must contain atleast 1 upper case letter, 1 lower case letter and a speciual character.")
-                raise IncorrectInfoError()
             
+            passwordcheck.check(request.POST.get("password"))
     except IntegrityError:
         error.append("Username already taken.")
     except IncorrectInfoError:
@@ -94,3 +72,12 @@ def register(request):
     context = {"error": error,}
     
     return render(request,"new/register.html",context)
+
+def login(request):
+    user = authenticate(username=request.POST.get('login_username'), password=request.POST.get("login_password"))
+    if user is not None:
+    # A backend authenticated the credentials
+        return render(request,"new/base.html")
+    else:
+        return render(request,"new/login.html")
+    
